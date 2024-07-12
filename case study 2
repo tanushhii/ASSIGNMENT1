@@ -1,0 +1,18 @@
+import pandas as pd
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+import numpy as np
+
+# Load the dataset
+df = pd.read_csv('diabetes_data.csv')
+
+# Create an instance of the MICE imputer
+mice_imputer = IterativeImputer(random_state=0)
+
+# Fit the imputer and transform the data
+imputed_data = mice_imputer.fit_transform(df)
+
+# Create a new DataFrame with the imputed data
+imputed_df = pd.DataFrame(imputed_data, columns=df.columns)
+
+print(imputed_df.head())
